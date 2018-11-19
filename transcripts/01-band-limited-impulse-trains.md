@@ -39,9 +39,30 @@ Let's get the DC component of that impulse train and integrate after removing it
 
 The idea behind the BLIT is: if we bandlimit the impulse, we‘ll have a method to generate a bandlimited sawtooth. 
 
-Let’s approach it from the other side: the impulse response of an ideal (brickwall) anti-aliasing filter is a sinc function. This is the basis of a bandlimited impulse train (BLIT). 
+Let’s approach it from the other side: the impulse response of an ideal (brickwall) anti-aliasing filter is a sinc function. So if we apply the ideal anti-aliasing filter to the ideal impulse train, we get a bandlimited impulse train (BLIT).
+
+This series of bandlimited impulses can now be sampled without aliasing. I don't want to delve too far into the math here, let's just say that a BLIT is defined by these 3 formulas:
+
+$$ y(n) = (M/P) Sinc_M[(M/P)n] $$
+where
 
 
+$$ Sinc_M(x) = \frac{sin( \pi x)}{M sin(\pi x /M)}$$
 
+$M$ = Number of Harmonics
+
+Calculated via
+$$ M = 2\cdot floor(P/2)+1 $$
+
+$y(n)$ is the sampled BLIT, displayed as a Discrete Summation Formula, where $Sinc_M$ is the digital sinc function with $M$ harmonics.
+
+Now, we have two edge cases to cover:
+
+- the denominator of $Sinc_M$ will be 0 if $n$ is an integer factor of $P$
+- the numerator of $Sinc_M$ will be 0 if $x$ is an integer, which will be the case if $M=P$
+
+We have to care for these cases by slightly shifting $P$, otherwise it will lead to instabilities in the generated waveforms.
+
+Let's now make a BLIT. We start the same as before and supply the necessary arguments ($M$), and make an interactive plot. If we integrate the BLIT as above, we get a sawtooth, only this time without aliasing. Neat, isn't it?
 
 
