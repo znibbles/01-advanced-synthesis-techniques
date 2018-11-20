@@ -26,7 +26,7 @@ A simple approach that will lead to decent results in many cases. We will look a
 
 ## Bandlimited Impulse Trains (BLITs)
 
-The main idea is pretty simple. We can generate a simple sawtooth by integrating a unit impulse, only that the unit impulse itself contains all frequencies per definition, so integrating it will also lead to an infinite number of partials.
+The main idea is pretty simple. We can generate a simple sawtooth by integrating a unit impulse minus some DC offset. The negative offset gives us an always falling signal after integration and the impulse corrects this falling signal in regular intervals giving a saw wave. The problem is that the unit impulse itself contains all frequencies per definition, so integrating it will also lead to an infinite number of partials.
 
 Let's demonstrate this by making a simple impulse train. We start the same way as before, just that we set every `P`th sample to 1. To be precise, this is exactly the point where aliasing will have its root: because in almost no case `P` will be integer, we have to assign the unit impulse to the sample that comes _nearest_, by truncating the modulo value:
 
@@ -72,7 +72,7 @@ Let's now make a BLIT. We start the same as before and supply the necessary argu
 
 To finish this off, let's look at how we can transform this from a static waveform generator into a dynamic oscillator that you can pass a frequency.
 
-First, we have to look at how to integrate in a real-time scenario. Obviously we cannot just take a sum of future samples, so we do this with a **Leaky Integrator**, which is nothin else than a one pole filter with the feedback coefficient alpha very close to 1. That way we keep the filter stable, that'w why it's called "leaky".
+First, we have to look at how to integrate in a real-time scenario. Obviously we cannot just take a sum of future samples, so we do this with a **Leaky Integrator**, which is nothing else than a one pole filter with the feedback coefficient alpha very close to 1. That way we keep the filter stable, that's why it's called "leaky". It behaves like a leaky tank that accumulates all water we pour in (intergration) but also has a little leak.
 
 Second, we need a way to subtract the DC component prior to integrating. Because we do not know how the signal will be developing in the future, we take a running average, approximated by a low-pass IIR filter with very slowly decaying impulse response.
 
