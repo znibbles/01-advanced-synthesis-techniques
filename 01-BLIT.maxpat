@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 261.0, 1128.0, 480.0 ],
+		"rect" : [ 34.0, 298.0, 892.0, 509.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -381,7 +381,7 @@
 						}
 ,
 						"classnamespace" : "dsp.gen",
-						"rect" : [ 406.0, 199.0, 840.0, 450.0 ],
+						"rect" : [ 50.0, 346.0, 840.0, 450.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -521,7 +521,7 @@
 										}
 ,
 										"classnamespace" : "dsp.gen",
-										"rect" : [ 551.0, 397.0, 499.0, 440.0 ],
+										"rect" : [ 197.0, 375.0, 499.0, 440.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -1055,13 +1055,13 @@
 					"patching_rect" : [ 42.0, 247.0, 136.0, 47.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4,
 							"parameter_mmin" : -70.0,
 							"parameter_longname" : "live.gain~",
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ 0.0 ],
-							"parameter_shortname" : "live.gain~"
+							"parameter_initial" : [ 0.0 ]
 						}
 
 					}

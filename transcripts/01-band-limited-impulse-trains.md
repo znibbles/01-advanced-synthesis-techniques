@@ -54,6 +54,7 @@ and
 	M = Number of Harmonics
 
 Calculated via
+
 	M = 2 * floor(P/2)+1
 
 `y(n)` is the sampled BLIT, displayed as a Discrete Summation Formula, where `Sinc_M` is the digital sinc function with `M` harmonics.
